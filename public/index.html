@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Gateway</title>
+    <style>
+        body {font-family: Arial; display:flex; justify-content:center; align-items:center; height:100vh; background:#f5F5F5; }
+        form {background:#fff; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); width:300px; }
+        input, button {width:100%; padding:10px; margin:5px 0; }
+        button {background:#0070f3; color:#fff; border:none; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <form id="payment-form">
+        <h2>Pay Now</h2>
+        <input type="email" name="email" placeholder="Your email" required />
+        <input type="number" name="amount" placeholder="Amount (NGN)" required />
+        <button type="submit">Pay</button>
+        </form>
+
+    <script>
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(e){e.preventDefault();alert('Form Submitted! Next: integrate Paystack.')});
+    </script>
+</body>
+</html>
