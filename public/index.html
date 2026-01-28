@@ -18,9 +18,34 @@
         <button type="submit">Pay</button>
         </form>
 
+    <!-- PAYSTACK SCRIPT -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    
     <script>
         const form = document.getElementById('payment-form');
-        form.addEventListener('submit', function(e){e.preventDefault();alert('Form Submitted! Next: integrate Paystack.')});
+        form.addEventListener('submit', function(e){e.preventDefault();
+
+            let email = form.email.value;
+            let amount = form.amount.value * 100; // in kobo
+            if(!email || !amount) return alert("Please fill all fields");
+
+            let handler = PaystackPop.setup({
+                key: 'pk_test_983290a52efdf5a6eb76771b8e4189d5ebc1e043',
+                email: email,
+                amount: amount,
+                currency: "NGN",
+                ref: 'txn_' + Math.floor(Math.random() * 1000000000),
+                callback: function(response){
+                    alert('Payment complete! Ref: ' + response.reference);
+                    window.location.href = "/success.html"; //optional success page
+                },
+                onClose: function(){
+                    alert('Payment cancelled.');
+                }
+                });
+
+                handler.openIframe();
+            });
     </script>
 </body>
 </html>
